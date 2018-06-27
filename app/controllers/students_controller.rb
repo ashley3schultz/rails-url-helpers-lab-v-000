@@ -6,14 +6,15 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @student = set_student
   end
 
   def activate_student
-    student = set_student
-    if student.active == true
-      student.update(active: false)
+    @student = set_student
+    if @student.active == true
+      @student.update(active: false)
     else
-      student.update(active: true)
+      @student.update(active: true)
     end
     rendor 'students/show'
   end
